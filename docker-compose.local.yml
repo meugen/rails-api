@@ -1,0 +1,23 @@
+name: rails-api
+
+services:
+  database:
+    image: mysql:8.0-debian
+    networks:
+      - railsapinetwork
+    environment:
+      MYSQL_ROOT_PASSWORD: Welc0me!@
+      MYSQL_DATABASE: rails_api_development
+
+  railsapi:
+    build: .
+    networks:
+      - railsapinetwork
+    environment:
+      DB_HOST: database
+      DB_PASSWORD: Welc0me!@
+    ports:
+      - 3000:3000
+
+networks:
+  railsapinetwork:
